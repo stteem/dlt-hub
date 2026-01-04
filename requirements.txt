@@ -1,3 +1,4 @@
 dlt
 dlt[duckdb]>=0.5.1
 dlt[cli]
+dlt[bigquery]

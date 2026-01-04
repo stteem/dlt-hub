@@ -1,6 +1,8 @@
 cron-descriptor==2.0.6
+db-dtypes==1.5.0
 dlt==1.20.0
 duckdb==1.4.3
-pandas==2.3.3
+gcsfs==2025.12.0
+google-cloud-bigquery==3.39.0
 pipdeptree==2.9.6
 python-dotenv==1.2.1

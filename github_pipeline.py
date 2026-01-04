@@ -2,7 +2,6 @@ import dlt
 
 from github import github_reactions, github_repo_events, github_stargazers
 
-
 def load_duckdb_repo_reactions_issues_only() -> None:
     """Loads issues, their comments and reactions for duckdb"""
     pipeline = dlt.pipeline(
@@ -21,9 +20,9 @@ def load_duckdb_repo_reactions_issues_only() -> None:
 def load_airflow_events() -> None:
     """Loads airflow events. Shows incremental loading. Forces anonymous access token"""
     pipeline = dlt.pipeline(
-        "github_events", destination='duckdb', dataset_name="airflow_events"
+        "github_events", destination='bigquery', dataset_name="airflow_events"
     )
-    data = github_repo_events("apache", "airflow", access_token="")
+    data = github_repo_events("apache", "airflow", access_token=dlt.secrets.value)
     print(pipeline.run(data))
     # if you uncomment this, it does not load the same events again
     # data = github_repo_events("apache", "airflow", access_token="")
@@ -55,7 +54,7 @@ def load_dlthub_dlt_stargazers() -> None:
 
 
 if __name__ == "__main__":
-    load_duckdb_repo_reactions_issues_only()
-    # load_airflow_events()
+    # load_duckdb_repo_reactions_issues_only()
+    load_airflow_events()
     # load_dlthub_dlt_all_data()
     # load_dlthub_dlt_stargazers()
